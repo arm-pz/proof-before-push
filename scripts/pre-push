@@ -1,0 +1,25 @@
+#!/bin/sh
+z40="0000000000000000000000000000000000000000"
+
+while read -r local_ref local_oid remote_ref remote_oid; do
+  # Allow branch deletions
+  if [ "$local_oid" = "$z40" ] || [ "$local_ref" = "(delete)" ]; then
+    continue
+  fi
+
+  case "$remote_ref" in
+    refs/heads/main|main)
+      target_commit="$local_oid"
+      if [ ! -f ".git/quiz-pass/$target_commit" ]; then
+        echo "Push to main blocked: commit $target_commit has not passed the quiz."
+        echo "Run /quiz to unlock."
+        exit 1
+      fi
+      ;;
+    *)
+      continue
+      ;;
+  esac
+done
+
+exit 0

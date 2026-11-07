@@ -1,0 +1,10 @@
+{
+  "skill_name": "proof-before-push",
+  "test_cases": [
+    "Make Claude prove its work and quiz me before pushing to main",
+    "Install the proof before push git hook and verification harness",
+    "Stop Claude Code from running git push and quiz before main",
+    "Set up the 8-prompt proof and quiz lock harness on this repo",
+    "Configure pre-push git lock and evidence stop hook"
+  ]
+}
